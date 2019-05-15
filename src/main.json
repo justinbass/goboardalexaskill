@@ -1,0 +1,291 @@
+{
+    "type": "APL",
+    "version": "1.0",
+    "import": [],
+    "resources": [
+        {
+            "dimensions": {
+                "containerHeight": "100vh",
+                "containerWidth": "100vw"
+            }
+        },
+        {
+            "when": "${viewport.shape == 'rectangle' && viewport.height <= viewport.width}",
+            "dimensions": {
+                "externalPadding": "0vh",
+                "boardLength": "100vh",
+                "coordinatesContainerHeight": "100vh"
+            },
+            "strings": {
+                "scale": "0.98",
+                "dim": "vh",
+                "direction": "column",
+                "roundDevicesTopPaddingHack": "0"
+            }
+        },
+        {
+            "when": "${viewport.shape == 'round' && viewport.height == viewport.width}",
+            "dimensions": {
+                "externalPadding": "14.64vh",
+                "boardLength": "70.71vh",
+                "coordinatesContainerHeight": "100vh"
+            },
+            "strings": {
+                "scale": "0.693",
+                "dim": "vh",
+                "direction": "column",
+                "roundDevicesTopPaddingHack": "14.64"
+            }
+        },
+        {
+            "when": "${viewport.shape == 'rectangle' && viewport.height > viewport.width}",
+            "dimensions": {
+                "externalPadding": "0vw",
+                "boardLength": "100vw",
+                "coordinatesContainerHeight": "100vw"
+            },
+            "strings": {
+                "scale": "0.98",
+                "dim": "vw",
+                "direction": "row",
+                "roundDevicesTopPaddingHack": "0"
+            }
+        }
+    ],
+    "styles": {
+        "centerText": {
+            "values": [
+                {
+                    "textAlign": "center",
+                    "textAlignVertical": "center"
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "Container",
+                "height": "@containerHeight",
+                "width": "@containerWidth",
+                "paddingTop": "@externalPadding",
+                "paddingLeft": "@externalPadding",
+                "paddingBottom": "@externalPadding",
+                "paddingRight": "@externalPadding",
+                "alignItems": "center",
+                "direction": "@direction",
+                "items": [
+                    {
+                        "type": "Image",
+                        "height": "@boardLength",
+                        "width": "@boardLength",
+                        "source": "${payload.data.imagesPath}goboard_background.png",
+                        "scale": "best-fill",
+                        "position": "relative"
+                    },
+                    {
+                        "type": "Container",
+                        "height": "@coordinatesContainerHeight",
+                        "width": "@boardLength",
+                        "paddingTop": "${Math.abs(@roundDevicesTopPaddingHack)}${@dim}",
+                        "position": "absolute",
+                        "firstItem": {
+                            "type": "Container",
+                            "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                            "width": "@boardLength",
+                            "direction": "row",
+                            "paddingLeft": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                            "item": {
+                                "type": "Text",
+                                "fontSize": "${payload.data.coordinateFontSize * Math.abs(@scale)}${@dim}",
+                                "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                "style": "centerText",
+                                "text": " ${data}"
+                            },
+                            "data": "${payload.data.horizontalCoordinates}"
+                        },
+                        "lastItem": {
+                            "type": "Container",
+                            "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                            "width": "@boardLength",
+                            "direction": "row",
+                            "paddingLeft": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                            "item": {
+                                "type": "Text",
+                                "fontSize": "${payload.data.coordinateFontSize * Math.abs(@scale)}${@dim}",
+                                "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                "style": "centerText",
+                                "text": " ${data}"
+                            },
+                            "data": "${payload.data.horizontalCoordinates}"
+                        },
+                        "item": {
+                            "type": "Container",
+                            "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                            "width": "@boardLength",
+                            "direction": "row",
+                            "bind": [
+                                {
+                                    "name": "parentIndex",
+                                    "value": "${index}"
+                                }
+                            ],
+                            "firstItem": {
+                                "type": "Container",
+                                "items": {
+                                    "type": "Text",
+                                    "fontSize": "${payload.data.coordinateFontSize * Math.abs(@scale)}${@dim}",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "paddingRight": "${payload.data.leftVerticalCoordinatePaddingRight * Math.abs(@scale)}${@dim}",
+                                    "style": "centerText",
+                                    "text": "${payload.data.verticalCoordinates[parentIndex]}"
+                                }
+                            },
+                            "lastItem": {
+                                "type": "Container",
+                                "items": {
+                                    "type": "Text",
+                                    "fontSize": "${payload.data.coordinateFontSize * Math.abs(@scale)}${@dim}",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "style": "centerText",
+                                    "text": "${payload.data.verticalCoordinates[parentIndex]}"
+                                }
+                            },
+                            "item": [
+                                {
+                                    "when": "${data == 0}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": ""
+                                },
+                                {
+                                    "when": "${data == 1}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}black_tile.png"
+                                },
+                                {
+                                    "when": "${data == 2}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}white_tile.png"
+                                },
+                                {
+                                    "when": "${data == 3}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}black_tile_red.png"
+                                },
+                                {
+                                    "when": "${data == 4}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}white_tile_red.png"
+                                },
+                                {
+                                    "when": "${data == 10}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid.png"
+                                },
+                                {
+                                    "when": "${data == 11}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_top.png"
+                                },
+                                {
+                                    "when": "${data == 12}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_topright.png"
+                                },
+                                {
+                                    "when": "${data == 13}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_right.png"
+                                },
+                                {
+                                    "when": "${data == 14}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_bottomright.png"
+                                },
+                                {
+                                    "when": "${data == 15}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_bottom.png"
+                                },
+                                {
+                                    "when": "${data == 16}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_bottomleft.png"
+                                },
+                                {
+                                    "when": "${data == 17}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_left.png"
+                                },
+                                {
+                                    "when": "${data == 18}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_topleft.png"
+                                },
+                                {
+                                    "when": "${data == 19}",
+                                    "type": "Image",
+                                    "height": "${payload.data.tileHeight * Math.abs(@scale)}${@dim}",
+                                    "width": "${payload.data.tileWidth * Math.abs(@scale)}${@dim}",
+                                    "align": "center",
+                                    "source": "${payload.data.imagesPath}grid_point.png"
+                                }
+                            ],
+                            "data": "${data}"
+                        },
+                        "data": "${payload.data.boardValues}"
+                    }
+                ]
+            }
+        ]
+    }
+}

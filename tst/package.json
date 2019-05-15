@@ -1,0 +1,15 @@
+{
+  "name": "go-board-alexa-skill-test",
+  "version": "1.0.0",
+  "description": "Play a game of Go on Alexa.",
+  "scripts": {
+    "test": "mocha --timeout 1000000"
+  },
+  "author": "Go Board Alexa Skill",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk-core": "^2.0.7",
+    "ask-sdk-model": "^1.4.1",
+    "aws-sdk": "^2.326.0"
+  }
+}

@@ -1,0 +1,605 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "go board",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "PlaceStoneIntent",
+                    "slots": [
+                        {
+                            "name": "horizontalCoordinateLetter",
+                            "type": "Letter"
+                        },
+                        {
+                            "name": "verticalCoordinateNumber",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "play at {verticalCoordinateNumber} {horizontalCoordinateLetter}",
+                        "play at {horizontalCoordinateLetter} {verticalCoordinateNumber}",
+                        "play {horizontalCoordinateLetter} {verticalCoordinateNumber}",
+                        "play {verticalCoordinateNumber} {horizontalCoordinateLetter}",
+                        "place in {verticalCoordinateNumber} {horizontalCoordinateLetter}",
+                        "place in {horizontalCoordinateLetter} {verticalCoordinateNumber}",
+                        "place on {horizontalCoordinateLetter} {verticalCoordinateNumber}",
+                        "place at {horizontalCoordinateLetter} {verticalCoordinateNumber}",
+                        "place at {verticalCoordinateNumber} {horizontalCoordinateLetter}",
+                        "place {verticalCoordinateNumber} {horizontalCoordinateLetter}",
+                        "{verticalCoordinateNumber} {horizontalCoordinateLetter}",
+                        "{horizontalCoordinateLetter} {verticalCoordinateNumber}",
+                        "place {horizontalCoordinateLetter} {verticalCoordinateNumber}"
+                    ]
+                },
+                {
+                    "name": "StartGameIntent",
+                    "slots": [],
+                    "samples": [
+                        "new game",
+                        "start a new game"
+                    ]
+                },
+                {
+                    "name": "PassIntent",
+                    "slots": [],
+                    "samples": [
+                        "pass"
+                    ]
+                },
+                {
+                    "name": "ScoreIntent",
+                    "slots": [],
+                    "samples": [
+                        "for the score",
+                        "what's the score",
+                        "score"
+                    ]
+                },
+                {
+                    "name": "UndoIntent",
+                    "slots": [],
+                    "samples": [
+                        "to undo",
+                        "undo"
+                    ]
+                },
+                {
+                    "name": "ChangeBoardSizeIntent",
+                    "slots": [
+                        {
+                            "name": "boardSize",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "change the size to {boardSize}",
+                        "size {boardSize}",
+                        "board size {boardSize}",
+                        "change board size to {boardSize}"
+                    ]
+                },
+                {
+                    "name": "ResignIntent",
+                    "slots": [],
+                    "samples": [
+                        "end this game",
+                        "forfeit",
+                        "I resign",
+                        "resign"
+                    ]
+                },
+                {
+                    "name": "RuleIntent",
+                    "slots": [],
+                    "samples": [
+                        "how do I play go",
+                        "what is go",
+                        "how do I play",
+                        "tell me the rules",
+                        "what are the rules",
+                        "for the rules",
+                        "rules"
+                    ]
+                },
+                {
+                    "name": "ChangeHandicapIntent",
+                    "slots": [
+                        {
+                            "name": "handicap",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "set handicap to {handicap}",
+                        "set handicap {handicap}",
+                        "change the handicap to {handicap}",
+                        "change handicap to {handicap}",
+                        "handicap {handicap}"
+                    ]
+                },
+                {
+                    "name": "ChangeLevelIntent",
+                    "slots": [
+                        {
+                            "name": "level",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "change the level to {level}",
+                        "change level {level}",
+                        "level {level}"
+                    ]
+                },
+                {
+                    "name": "ConfigurationIntent",
+                    "slots": [],
+                    "samples": [
+                        "what's the config",
+                        "what's the configuration",
+                        "what is the current configuration",
+                        "what is the configuration",
+                        "configuration"
+                    ]
+                },
+                {
+                    "name": "ConfigurationHelpIntent",
+                    "slots": [],
+                    "samples": [
+                        "how do I change configuration",
+                        "change the configuration",
+                        "how do I change the configuration",
+                        "configuration help"
+                    ]
+                },
+                {
+                    "name": "ChangeRulesIntent",
+                    "slots": [
+                        {
+                            "name": "rules",
+                            "type": "GoRules"
+                        }
+                    ],
+                    "samples": [
+                        "use {rules} scoring",
+                        "use {rules} rules",
+                        "change to {rules} rules",
+                        "{rules} rules"
+                    ]
+                },
+                {
+                    "name": "ChangeColorIntent",
+                    "slots": [
+                        {
+                            "name": "color",
+                            "type": "AMAZON.Color"
+                        }
+                    ],
+                    "samples": [
+                        "set my color to {color}",
+                        "change my color to {color}",
+                        "set color to {color}",
+                        "change the color to {color}",
+                        "color {color}"
+                    ]
+                },
+                {
+                    "name": "ChangeCompensationIntent",
+                    "slots": [
+                        {
+                            "name": "komi",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "change komi to {komi}",
+                        "set komi to {komi}",
+                        "set compensation to {komi}",
+                        "change compensation to {komi}",
+                        "komi {komi}",
+                        "compensation {komi}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "Letter",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "s.",
+                                "synonyms": [
+                                    "sierra"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "r.",
+                                "synonyms": [
+                                    "romeo"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "q.",
+                                "synonyms": [
+                                    "quebec"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "p.",
+                                "synonyms": [
+                                    "papa"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "o.",
+                                "synonyms": [
+                                    "oscar"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "n.",
+                                "synonyms": [
+                                    "november"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "m.",
+                                "synonyms": [
+                                    "mike"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "l.",
+                                "synonyms": [
+                                    "lima"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "k.",
+                                "synonyms": [
+                                    "kilo"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "j.",
+                                "synonyms": [
+                                    "juliett"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "i.",
+                                "synonyms": [
+                                    "india"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "h.",
+                                "synonyms": [
+                                    "hotel"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "g.",
+                                "synonyms": [
+                                    "golf"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "f.",
+                                "synonyms": [
+                                    "foxtrot"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "e.",
+                                "synonyms": [
+                                    "echo"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "d.",
+                                "synonyms": [
+                                    "delta"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "c.",
+                                "synonyms": [
+                                    "charlie"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "b.",
+                                "synonyms": [
+                                    "bravo"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a.",
+                                "synonyms": [
+                                    "alfa"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GoRules",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "japanese"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "chinese"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "StartGameIntent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.714929810329"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "PassIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.559402865621"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "ChangeBoardSizeIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.214331334925"
+                    },
+                    "slots": [
+                        {
+                            "name": "boardSize",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "ResignIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.123441103238"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "ChangeHandicapIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.35755994730"
+                    },
+                    "slots": [
+                        {
+                            "name": "handicap",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "ChangeLevelIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.612026935258"
+                    },
+                    "slots": [
+                        {
+                            "name": "level",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "ChangeRulesIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.89364242987"
+                    },
+                    "slots": [
+                        {
+                            "name": "rules",
+                            "type": "GoRules",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "ChangeColorIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.541702442743"
+                    },
+                    "slots": [
+                        {
+                            "name": "color",
+                            "type": "AMAZON.Color",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "ChangeCompensationIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.985932848309"
+                    },
+                    "slots": [
+                        {
+                            "name": "komi",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent.714929810329",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you sure you want to restart the game?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.559402865621",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Passing twice ends the game. Are you sure you would like to pass?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.214331334925",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Changing the board size will start a new game, are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.123441103238",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "If you resign, the current game will end and I will win. Are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.35755994730",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Changing the handicap will start a new game, are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.612026935258",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Changing the level will start a new game, are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.89364242987",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Changing the rules will start a new game, are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.541702442743",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Changing your color will start a new game, are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.985932848309",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Changing white's compensation will start a new game, are you sure?"
+                    }
+                ]
+            }
+        ]
+    }
+}

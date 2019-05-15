@@ -1,0 +1,16 @@
+Status for this project:
+
+I had the initial version roughly working in commit 36a-86b. I play-tested it and found that AI levels were a critical P0 feature, since the AI is far too difficult for me to even have fun playing against. Handicap and AI levels are thus required, meaning we need to switch the model from using execSync to an interactive execFile command that feeds input in. Also flakiness was observed, which is fixed by writing "save" and "quit" into the command.
+
+GnugoExecutor was written to execute these commands, which is working locally. The previous gnugoParser did not use a callback structure, nor did its caller, gameStateManager (which is what index.js interacts with directly). I modified gameStateManager to accept callbacks in f38 but did not test it thoroughly, nor did I playtest it. Bugs likely remains.
+
+Next steps are to integrate the functions from gnugoExecutor into gnugoParser, which can parse the output and ideally modify the SGF files. GameStateManager should just make disk/db calls, and call gnugoParser. This is somewhat implemented in staging, but score is not working. So, to save the effort of deploying to test, I need to rewrite gnugoParser to work locally, and test it against many inputs so that boardInfo is returned correctly.
+
+Note that the current parsing expects 1 or 2 boards. The new model could have 1-4 boards, in complex combinations (due to pass not showing a board, for example). Each case (pass/resign/move) should be handled separately.
+
+Also note that the user utterance for move, e.g. A 1, can simply be concatenated, upper-cased, and thrown into the gnugoExecutor command without conversions anywhere.
+
+Also note the last move for black/white might need to be parsed in a new way. Currently undo does not show the previous last moves, which is annoying.
+
+Komi likely doesn't need to be adjusted in P0. 6.5 supposedly works well for most board sizes. But handicap does, and it gnugo itself does not preserve the handicap between executions. So we may need to parse the existing SGF file to populate a new initial SGF, which somewhat obviates the need for the gnugoExecutor board initializer. Need to think this through...
+
