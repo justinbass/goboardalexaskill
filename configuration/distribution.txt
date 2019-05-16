@@ -13,7 +13,7 @@ In this game, each player tries to use threats of death, capture, or isolation t
 
 The simplified rules of Go: Each player, starting with black, takes turns placing stones. White receives compensation for going second. A group consists of adjacent tiles of the same color, as in stones connected on their top, bottom, left, or right sides. Surround another player's groups to capture them, removing their pieces from the board. Empty territory surrounded by a single player's groups is considered theirs. Pass when you do not believe you can obtain more territory. When both players pass consecutively or one resigns, the game ends. Generally, the player with the most territory wins. Full rules, strategy, and context for Go can be found at senseis.xmp.net.
 
-The game engine is GnuGo 3.8. The default configuration uses a board size of 17, no handicap, white compensation of 6.5 points, and Chinese scoring. The player starts as black, and the AI starts with level 1. These can all be changed; ask for configuration help to find out how. The most AI difficult level is 6, which corresponds to the fairly easy Kyu 10 rank (against CrazyStone) - handicap up to 9 can be used to simulate more difficult gameplay. AI difficulty is limited to avoid excessive delays in AWS Lambda.
+The game engine is GnuGo 3.8. The default configuration uses a board size of 17, no handicap, white compensation of 6.5 points, and Chinese scoring. The player starts as black, and the AI starts with level 1. These can all be changed; ask for configuration help to find out how. The most difficult AI level is 6, which corresponds to the fairly easy Kyu 10 rank (against CrazyStone) - handicap up to 9 can be used to simulate more difficult gameplay. AI difficulty is limited to avoid excessive delays in AWS Lambda.
 
 The game will be saved after each move without requiring special action. Each Amazon account (e-mail address) will share the same game, so that you can access it across multiple devices. Only one active game is allowed per account, and it will currently be erased after starting a new game.
 
@@ -21,7 +21,7 @@ You may use the NATO phonetic alphabet to improve voice recognition, e.g. "Alexa
 
 What's new?
 
-This is the initial version of the skill. It's supported on compatible Alexa-enabled devices, and was tested on Echo Show, Echo Spot, and FireTV devices. On unsupported devices, including Fire Tablets, Android devices, and voice-only devices (Echo Dot), the game will continue in voice only mode.
+Go Board is supported on compatible Alexa-enabled devices with a screen, and was tested on Echo Show, Echo Spot, and FireTV devices. On unsupported devices, including Fire Tablets, Android devices, and voice-only devices (Echo Dot), the game will continue in voice only mode.
 
 Example Phrases
 
