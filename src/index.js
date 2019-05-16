@@ -692,7 +692,7 @@ const ConfigurationHelpIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'ConfigurationHelpIntent';
     },
     handle(handlerInput) {
-        const speechText = 'To change the configuration, you can say, size 13. handicap 5. level 10. compensation 0. color white. or japanese rules.';
+        const speechText = 'To change the configuration, you can say, size 13. handicap 5. level 6. compensation 0. color white. or japanese rules.';
 
         return getShowBoardPromise(handlerInput, speechText);
     },
