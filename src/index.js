@@ -209,7 +209,6 @@ function transformBoardValues(boardValues) {
     });
 }
 
-// TODO: Move static values directly into main.json template
 function getRenderDocumentDirective(boardInfo) {
     return {
         type: `${ALEXA_APL_STRING}.RenderDocument`,
@@ -223,8 +222,6 @@ function getRenderDocumentDirective(boardInfo) {
                 'boardSize': boardInfo.gameOptions.boardSize,
                 'tileWidth': getTileSize(boardInfo.gameOptions.boardSize),
                 'tileHeight': getTileSize(boardInfo.gameOptions.boardSize),
-                'leftVerticalCoordinatePaddingRight': 0.35,
-                'coordinateFontSize': 3.5,
                 'imagesPath': IMAGES_URL_PATH,
                 'horizontalCoordinates': getHorizontalCoordinates(boardInfo.gameOptions.boardSize),
                 'verticalCoordinates': getVerticalCoordinates(boardInfo.gameOptions.boardSize),
