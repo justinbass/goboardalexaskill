@@ -1,3 +1,0 @@
-- Use appropriate gnugo binary in this directory (e.g. gnugo_ios for MAC, gnugo.exe for Cygwin)
-- Note that the gnugo.exe in src/ is for Amazon Linux (Lambda).
-- Test in this directory with 'npm test'
